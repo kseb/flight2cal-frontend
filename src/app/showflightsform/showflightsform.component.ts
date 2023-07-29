@@ -51,7 +51,7 @@ export class ShowflightsformComponent {
     if ((<Airport>departure).Icao === undefined || (<Airport>arrival).Icao === undefined) {
       alert("Please choose a departure and arrival airport.")
     } else {
-      let flightsJson = this.service.getHttpClient().get<Flights>(this.service.getBackendUrl() + "/" + (<Airport>arrival).Icao + "/" + (<Airport>departure).Icao + "/" + date);
+      let flightsJson = this.service.getHttpClient().get<Flights>(this.service.getBackendUrl() + "/flights/" + (<Airport>arrival).Icao + "/" + (<Airport>departure).Icao + "/" + date);
       //flightsJson.subscribe()
       flightsJson.subscribe((flights: Flights) => {
         this.flights = flights.flights
