@@ -1,0 +1,16 @@
+<mat-form-field class="example-full-width">
+  <mat-label>{{ title }}</mat-label>
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+    <mat-option *ngFor="let airport of filteredAirports | async" [value]="airport">
+      {{airport.Name + " (" + airport.City + ", " + airport.Icao + ")"}}
+    </mat-option>
+  </mat-autocomplete>
+  <input type="text"
+         placeholder="Pick one"
+         aria-label="Number"
+         [formControl]="airport"
+         [matAutocomplete]="auto"
+         [required]="true"
+         matInput
+  >
+</mat-form-field>
