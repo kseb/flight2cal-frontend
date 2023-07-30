@@ -1,6 +1,6 @@
-# Flight2calFrontend
+# flight2cal-frontend
 
-Frontend for [Flight2calBackend](https://github.com/kseb/flight2cal-backend).
+Frontend for [flight2cal-backend](https://github.com/kseb/flight2cal-backend).
 
 It's a simple Angular application. You can choose an departure and arrival airport,
 a date and get a list of all flights on that day. With a click on a specific flight
