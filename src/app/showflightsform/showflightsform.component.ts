@@ -74,7 +74,11 @@ export class ShowflightsformComponent {
       start: [startDate.getFullYear(), startDate.getMonth() + 1, startDate.getDate(), startDate.getHours(), startDate.getMinutes()],
       end: [endDate.getFullYear(), endDate.getMonth() + 1, endDate.getDate(), endDate.getHours(), endDate.getMinutes()],
       title: 'Flight from ' + departureAirport.airport.value?.City + ' to ' + arrivalAirport.airport.value?.City,
-      description: "ICAO: " + flight.flight_icao,
+      description:
+        `Departure airport: ${departureAirport.airport.value?.Name},
+        Arrival airport: ${arrivalAirport.airport.value?.Name},
+        ICAO of flight: ${flight.flight_icao}
+        `,
       location: flight.departure_airport_name,
       geo: geo,
     });
