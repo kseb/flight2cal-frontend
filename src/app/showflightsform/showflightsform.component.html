@@ -20,7 +20,10 @@
 <!--</form>-->
 
 <mat-action-list>
-  <mat-list-item (click)="downloadIcs(flight, departureAirport, arrivalAirport)" *ngFor="let flight of flights">
+  <mat-list-item
+      (click)="downloadIcs(flight, departureAirport, arrivalAirport)"
+      (touchstart)="downloadIcs(flight, departureAirport, arrivalAirport)"
+      *ngFor="let flight of flights">
     <span matListItemLine>{{ flight.departure_airport_name }} - {{ flight.arrival_airport_name }}</span>
     <span>{{ flight.departure | date:'short' }} - {{ flight.arrival | date:'short' }}</span>
   </mat-list-item>
