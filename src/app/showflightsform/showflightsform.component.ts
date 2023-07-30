@@ -76,9 +76,8 @@ export class ShowflightsformComponent {
       title: 'Flight from ' + departureAirport.airport.value?.City + ' to ' + arrivalAirport.airport.value?.City,
       description:
         `Departure airport: ${departureAirport.airport.value?.Name},
-        Arrival airport: ${arrivalAirport.airport.value?.Name},
-        ICAO of flight: ${flight.flight_icao}
-        `,
+Arrival airport: ${arrivalAirport.airport.value?.Name},
+ICAO of flight: ${flight.flight_icao}`,
       location: flight.departure_airport_name,
       geo: geo,
     });
