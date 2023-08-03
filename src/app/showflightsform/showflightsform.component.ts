@@ -1,9 +1,9 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {Airport, AirportpickerComponent} from "../airportpicker/airportpicker.component";
 import {HttpClientService} from "../http-client.service";
 import {getLocaleTimeFormat} from "@angular/common";
 import * as ics from 'ics';
-import {GeoCoordinates} from "ics";
+import {GeoCoordinates} from 'ics';
 
 
 export class Flights {
@@ -17,7 +17,7 @@ export class Flights {
 
 export class Flight {
 
-  constructor(arr_icao: string, dep_icao: string, flight_icao: string, departure: string, arrival: string, departure_airport_name: string, arrival_airport_name: string) {
+  constructor(arr_icao: string, dep_icao: string, flight_icao: string, departure: string, arrival: string, departure_airport_name: string, arrival_airport_name: string, airline_name: string) {
     this.arr_icao = arr_icao;
     this.dep_icao = dep_icao;
     this.flight_icao = flight_icao;
@@ -25,6 +25,7 @@ export class Flight {
     this.arrival = arrival;
     this.departure_airport_name = departure_airport_name;
     this.arrival_airport_name = arrival_airport_name;
+    this.airline_name = airline_name;
   }
 
   arr_icao: string
@@ -34,6 +35,7 @@ export class Flight {
   arrival: string
   departure_airport_name: string
   arrival_airport_name: string
+  airline_name: string
 }
 
 @Component({
@@ -73,9 +75,10 @@ export class ShowflightsformComponent {
     const icalEvent = ics.createEvent({
       start: [startDate.getFullYear(), startDate.getMonth() + 1, startDate.getDate(), startDate.getHours(), startDate.getMinutes()],
       end: [endDate.getFullYear(), endDate.getMonth() + 1, endDate.getDate(), endDate.getHours(), endDate.getMinutes()],
-      title: 'Flight from ' + departureAirport.airport.value?.City + ' to ' + arrivalAirport.airport.value?.City,
+      title: 'Flight: ' + departureAirport.airport.value?.City + ' to ' + arrivalAirport.airport.value?.City,
       description:
-        `Departure airport: ${departureAirport.airport.value?.Name},
+        `Airline: ${flight.airline_name},
+Departure airport: ${departureAirport.airport.value?.Name},
 Arrival airport: ${arrivalAirport.airport.value?.Name},
 ICAO of flight: ${flight.flight_icao}`,
       location: flight.departure_airport_name,
