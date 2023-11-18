@@ -77,8 +77,4 @@ export class AirportpickerComponent implements OnInit {
       })
     )
   }
-
-  //airportSelected(airport: Airport) {
-    //this.selectedAirportEvent.emit(airport)
-  //}
 }
