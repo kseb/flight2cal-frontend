@@ -1,4 +1,4 @@
-<mat-form-field class="example-full-width">
+<mat-form-field class="mat-mdc-form-field-flex">
   <mat-label>{{ title }}</mat-label>
   <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
     <mat-option *ngFor="let airport of filteredAirports | async" [value]="airport">

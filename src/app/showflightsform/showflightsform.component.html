@@ -4,7 +4,7 @@
     <app-airportpicker [title]="'Arrival airport'" #arrivalAirport></app-airportpicker>
   </div>
   <div>
-    <mat-form-field>
+    <mat-form-field class="mat-mdc-form-field-flex">
       <mat-label>Choose date of flight</mat-label>
       <input [required]="true" matInput [matDatepicker]="picker" #date>
       <mat-hint>MM/DD/YYYY</mat-hint>
@@ -13,7 +13,7 @@
     </mat-form-field>
   </div>
   <div>
-    <button mat-raised-button color="accent" (click)="submit(date.value, departureAirport.airport.value, arrivalAirport.airport.value)">
+    <button class="mat-mdc-button-touch-target" mat-raised-button color="accent" (click)="submit(date.value, departureAirport.airport.value, arrivalAirport.airport.value)">
       Show flights
     </button>
   </div>
