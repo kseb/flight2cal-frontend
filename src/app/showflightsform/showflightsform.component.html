@@ -1,32 +1,31 @@
-<!--<form class="flight_selector">-->
-  <div>
-    <app-airportpicker [title]="'Departure airport'" #departureAirport></app-airportpicker>
-    <app-airportpicker [title]="'Arrival airport'" #arrivalAirport></app-airportpicker>
-  </div>
-  <div>
-    <mat-form-field class="mat-mdc-form-field-flex">
-      <mat-label>Choose date of flight</mat-label>
-      <input [required]="true" matInput [matDatepicker]="picker" #date>
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </div>
-  <div>
-    <button class="mat-mdc-button-touch-target" mat-raised-button color="accent" (click)="submit(date.value, departureAirport.airport.value, arrivalAirport.airport.value)">
-      Show flights
-    </button>
-  </div>
-<!--</form>-->
+<div>
+  <app-airportpicker [title]="'Departure airport'" #departureAirport></app-airportpicker>
+  <app-airportpicker [title]="'Arrival airport'" #arrivalAirport></app-airportpicker>
+</div>
+<div>
+  <mat-form-field class="mat-mdc-form-field-flex">
+    <mat-label>Choose date of flight</mat-label>
+    <input [required]="true" matInput [matDatepicker]="picker" #date>
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
+<div>
+  <button class="mat-mdc-button-touch-target" mat-raised-button color="accent"
+          (click)="submit(date.value, departureAirport.airport.value, arrivalAirport.airport.value)">
+    Show flights
+  </button>
+</div>
 
 <mat-action-list>
   <mat-list-item
-      (click)="downloadIcs(flight, departureAirport, arrivalAirport)"
-      (touchstart)="downloadIcs(flight, departureAirport, arrivalAirport)"
-      *ngFor="let flight of flights">
+    (click)="downloadIcs(flight, departureAirport, arrivalAirport)"
+    (touchstart)="downloadIcs(flight, departureAirport, arrivalAirport)"
+    (mousedown)="downloadIcs(flight, departureAirport, arrivalAirport)"
+    *ngFor="let flight of flights">
     <span matListItemLine class="mat-body-strong">{{ flight.airline_name}}</span>
     <span matListItemLine>{{ flight.departure_airport_name }} - {{ flight.arrival_airport_name }}</span>
     <span matListItemLine>{{ flight.departure | date:'short' }} - {{ flight.arrival | date:'short' }}</span>
   </mat-list-item>
 </mat-action-list>
-
