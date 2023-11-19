@@ -91,10 +91,5 @@ ICAO of flight: ${flight.flight_icao}`,
     }
   }
 
-  handleTouchStart(event, flight, departureAirport, arrivalAirport) {
-    event.preventDefault();
-    this.downloadIcs(flight, departureAirport, arrivalAirport);
-  }
-
   protected readonly getLocaleTimeFormat = getLocaleTimeFormat;
 }

@@ -21,7 +21,7 @@
 <mat-action-list>
   <mat-list-item
     (click)="downloadIcs(flight, departureAirport, arrivalAirport)"
-    (touchstart)="handleTouchStart(flight, departureAirport, arrivalAirport)"
+    (touchstart)="downloadIcs(flight, departureAirport, arrivalAirport)"
     (mousedown)="downloadIcs(flight, departureAirport, arrivalAirport)"
     *ngFor="let flight of flights">
     <span matListItemLine class="mat-body-strong">{{ flight.airline_name}}</span>
