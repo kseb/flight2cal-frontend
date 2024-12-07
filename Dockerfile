@@ -1,15 +1,13 @@
-FROM node:latest as build
+FROM node:latest AS build
 
-WORKDIR /usr/local/app
-
-COPY ./ /usr/local/app/
-
-RUN npm install --omit=dev
-
-RUN npm run build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build -- --configuration production
 
 FROM nginx:stable-alpine-slim
 
-COPY --from=build /usr/local/app/dist/flight2cal-frontend /usr/share/nginx/html
+COPY --from=build /app/dist/flight2cal-frontend /usr/share/nginx/html
 
 EXPOSE 80
