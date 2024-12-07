@@ -21,9 +21,10 @@ export class Airport {
 }
 
 @Component({
-  selector: 'app-airportpicker',
-  templateUrl: './airportpicker.component.html',
-  styleUrls: ['./airportpicker.component.less'],
+    selector: 'app-airportpicker',
+    templateUrl: './airportpicker.component.html',
+    styleUrls: ['./airportpicker.component.less'],
+    standalone: false
 })
 export class AirportpickerComponent implements OnInit {
   airports: Airport[]
