@@ -39,9 +39,10 @@ export class Flight {
 }
 
 @Component({
-  selector: 'app-showflightsform',
-  templateUrl: './showflightsform.component.html',
-  styleUrls: ['./showflightsform.component.less'],
+    selector: 'app-showflightsform',
+    templateUrl: './showflightsform.component.html',
+    styleUrls: ['./showflightsform.component.less'],
+    standalone: false
 })
 export class ShowflightsformComponent {
   flights: Flight[] = []

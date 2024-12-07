@@ -8,7 +8,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {AirportpickerComponent} from './airportpicker/airportpicker.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
@@ -32,32 +32,26 @@ const MY_DATE_FORMAT = {
 };
 
 
-@NgModule({
-	declarations: [
-		AppComponent,
-		AirportpickerComponent,
-		ShowflightsformComponent
-	],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatSlideToggleModule,
-    MatAutocompleteModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatListModule,
-  ],
-	providers: [
-    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT }
-  ],
-	bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        AirportpickerComponent,
+        ShowflightsformComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatSlideToggleModule,
+        MatAutocompleteModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatListModule], providers: [
+        { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+        { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {
 }
