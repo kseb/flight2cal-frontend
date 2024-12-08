@@ -18,14 +18,28 @@
   </button>
 </div>
 
-<mat-action-list>
-  <mat-list-item
-    (click)="downloadIcs(flight, departureAirport, arrivalAirport)"
-    (touchstart)="downloadIcs(flight, departureAirport, arrivalAirport)"
-    (mousedown)="downloadIcs(flight, departureAirport, arrivalAirport)"
-    *ngFor="let flight of flights">
-    <span matListItemLine class="mat-body-strong">{{ flight.airline_name}}</span>
-    <span matListItemLine>{{ flight.departure_airport_name }} - {{ flight.arrival_airport_name }}</span>
-    <span matListItemLine>{{ flight.departure | date:'short' }} - {{ flight.arrival | date:'short' }}</span>
-  </mat-list-item>
-</mat-action-list>
+<mat-card appearance="outlined"
+          *ngFor="let flight of flights">
+  <mat-card-header>
+    <mat-card-title>{{ flight.airline_name }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>{{ flight.departure_airport_name }} - {{ flight.arrival_airport_name }}</mat-card-content>
+  <mat-card-content matListItemLine>{{ flight.departure | date:'short' }} - {{ flight.arrival | date:'short' }}</mat-card-content>
+  <mat-card-actions align="end">
+    <add-to-calendar-button
+      [attr.name]="'Flight from ' + flight.departure_city + ' to ' + flight.arrival_city"
+      [attr.startDate]="flight.departure | date:'yyyy-MM-dd'"
+      [attr.startTime]="flight.departure | date:'HH:mm'"
+      [attr.endTime]="flight.arrival | date:'HH:mm'"
+      [attr.location]="flight.departure_airport_name"
+      [attr.description]="'Flight from <it>' + flight.departure_airport_name + '</it> to <it>' +
+        flight.arrival_airport_name + '</it>:<br>Departure: ' + (flight.departure | date:'short') + '<br>Arrival: ' +
+        (flight.arrival | date:'short')"
+      options="'Google','iCal'"
+      buttonsList
+      hideTextLabelButton
+      buttonStyle="round"
+      lightMode="bodyScheme"
+    ></add-to-calendar-button>
+  </mat-card-actions>
+</mat-card>
