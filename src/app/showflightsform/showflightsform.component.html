@@ -1,9 +1,17 @@
-<div>
-  <app-airportpicker [title]="'Departure airport'" #departureAirport></app-airportpicker>
-  <app-airportpicker [title]="'Arrival airport'" #arrivalAirport></app-airportpicker>
+<div style="width: 100%; min-width: 300px; max-width: 600px; margin-bottom: 20px;">
+  <!-- Departure Airport Picker -->
+  <div style="width: 100%; margin-bottom: 20px;">
+    <app-airportpicker [title]="'Departure airport'" #departureAirport></app-airportpicker>
+  </div>
+
+  <!-- Arrival Airport Picker -->
+  <div style="width: 100%;">
+    <app-airportpicker [title]="'Arrival airport'" #arrivalAirport></app-airportpicker>
+  </div>
 </div>
-<div>
-  <mat-form-field class="mat-mdc-form-field-flex">
+
+<div style="margin-bottom: 20px; width: 100%; max-width: 600px;">
+  <mat-form-field class="mat-mdc-form-field-flex" appearance="fill" style="width: 100%;">
     <mat-label>Choose date of flight</mat-label>
     <input matInput [matDatepicker]="picker" #date (focus)="picker.open()" required>
     <mat-hint>MM/DD/YYYY</mat-hint>
@@ -11,14 +19,15 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 </div>
-<div>
-  <button class="mat-mdc-button-touch-target" mat-raised-button color="accent"
+
+<div style="text-align: center; margin-bottom: 20px;">
+  <button mat-raised-button color="accent"
           (click)="submit(date.value, departureAirport.airport.value, arrivalAirport.airport.value)">
     Show flights
   </button>
 </div>
 
-<mat-card appearance="outlined" *ngFor="let flight of flights" style="margin-bottom: 16px; margin-top: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+<mat-card *ngFor="let flight of flights" appearance="outlined" style="margin: 20px 0; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
   <mat-card-header>
     <mat-card-title>{{ flight.airline_name }}</mat-card-title>
     <mat-card-subtitle>{{ flight.departure_airport_name }} - {{ flight.arrival_airport_name }}</mat-card-subtitle>
