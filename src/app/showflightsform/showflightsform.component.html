@@ -18,13 +18,17 @@
   </button>
 </div>
 
-<mat-card appearance="outlined"
-          *ngFor="let flight of flights">
+<mat-card appearance="outlined" *ngFor="let flight of flights" style="margin-bottom: 16px; margin-top: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
   <mat-card-header>
     <mat-card-title>{{ flight.airline_name }}</mat-card-title>
+    <mat-card-subtitle>{{ flight.departure_airport_name }} - {{ flight.arrival_airport_name }}</mat-card-subtitle>
   </mat-card-header>
-  <mat-card-content>{{ flight.departure_airport_name }} - {{ flight.arrival_airport_name }}</mat-card-content>
-  <mat-card-content matListItemLine>{{ flight.departure | date:'short' }} - {{ flight.arrival | date:'short' }}</mat-card-content>
+
+  <mat-card-content>
+    <p>Departure: {{ flight.departure | date:'short' }}</p>
+    <p>Arrival: {{ flight.arrival | date:'short' }}</p>
+  </mat-card-content>
+
   <mat-card-actions align="end">
     <add-to-calendar-button
       [attr.name]="'Flight from ' + flight.departure_city + ' to ' + flight.arrival_city"
