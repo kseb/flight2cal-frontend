@@ -5,7 +5,7 @@
 <div>
   <mat-form-field class="mat-mdc-form-field-flex">
     <mat-label>Choose date of flight</mat-label>
-    <input [required]="true" matInput [matDatepicker]="picker" #date>
+    <input matInput [matDatepicker]="picker" #date (focus)="picker.open()" required>
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
