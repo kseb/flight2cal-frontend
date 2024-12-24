@@ -6,9 +6,12 @@ on:
       - test
   
 
+
 jobs:
   deployment:
-    runs-on: bitnami/kubectl
+    container:
+      image: bitnami/kubectl
+    runs-on: ubuntu-latest
     environment: kubexti
     steps:
       - name: get-config
