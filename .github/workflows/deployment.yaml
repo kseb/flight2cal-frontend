@@ -19,6 +19,7 @@ jobs:
         env:
           TEST: ${{secrets.TEST}}
       - name: whichconfig
-        run: echo $(wc -l ~/.kube/config)
+        run: wc -l ~/.kube/config
+        shell: bash
       - name: get-pods
         run: echo ~/.kube/config
