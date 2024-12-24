@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {HttpClientService} from "../http-client.service";
 import {map, Observable, startWith} from "rxjs";
@@ -30,11 +30,17 @@ export class AirportpickerComponent implements OnInit {
   airports: Airport[]
   filteredAirports: Observable<Airport[]>
   @Input() title: string = ''
+  @ViewChild('airportPickerInput') airportPickerInput: ElementRef<any> | undefined
 
   constructor(private service: HttpClientService) {
     this.airports = []
     this.filteredAirports = new Observable<Airport[]>()
     this.loadAirports()
+  }
+
+  focus() {
+    // @ts-ignore
+    this.airportPickerInput.nativeElement.focus()
   }
 
   private _filter(value: string): Airport[] {

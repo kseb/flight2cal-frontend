@@ -68,7 +68,7 @@
 
 	.content {
 		display: flex;
-		margin: 82px auto 32px;
+		margin: 40px auto 32px;
 		padding: 0 16px;
 		max-width: 960px;
 		flex-direction: column;
@@ -303,12 +303,15 @@
 </style>
 
 <!-- Toolbar -->
-<div class="toolbar" role="banner">
+<mat-toolbar>
+  <span style="margin: auto; display: flex; align-items: center;">
+    <mat-icon style="padding-right: 5px; vertical-align: text-bottom;">flight</mat-icon>
+    flycal
+  </span>
+</mat-toolbar>
 
-</div>
 
 <div class="content" role="main">
-
 
 	<app-showflightsform></app-showflightsform>
 	<router-outlet></router-outlet>

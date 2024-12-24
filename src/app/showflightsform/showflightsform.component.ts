@@ -1,10 +1,8 @@
 import {Component} from '@angular/core';
-import {Airport, AirportpickerComponent} from "../airportpicker/airportpicker.component";
+import {Airport} from "../airportpicker/airportpicker.component";
 import {HttpClientService} from "../http-client.service";
 import {getLocaleTimeFormat} from "@angular/common";
-import * as ics from 'ics';
-import {GeoCoordinates} from 'ics';
-
+import 'add-to-calendar-button';
 
 export class Flights {
 
@@ -17,7 +15,8 @@ export class Flights {
 
 export class Flight {
 
-  constructor(arr_icao: string, dep_icao: string, flight_icao: string, departure: string, arrival: string, departure_airport_name: string, arrival_airport_name: string, airline_name: string) {
+  constructor(arr_icao: string, dep_icao: string, flight_icao: string, departure: string, arrival: string, departure_airport_name: string,
+              arrival_airport_name: string, airline_name: string, arrival_city: string, departure_city: string) {
     this.arr_icao = arr_icao;
     this.dep_icao = dep_icao;
     this.flight_icao = flight_icao;
@@ -26,6 +25,8 @@ export class Flight {
     this.departure_airport_name = departure_airport_name;
     this.arrival_airport_name = arrival_airport_name;
     this.airline_name = airline_name;
+    this.arrival_city = arrival_city;
+    this.departure_city = departure_city;
   }
 
   arr_icao: string
@@ -36,13 +37,15 @@ export class Flight {
   departure_airport_name: string
   arrival_airport_name: string
   airline_name: string
+  arrival_city: string
+  departure_city: string
 }
 
 @Component({
-    selector: 'app-showflightsform',
-    templateUrl: './showflightsform.component.html',
-    styleUrls: ['./showflightsform.component.less'],
-    standalone: false
+  selector: 'app-showflightsform',
+  templateUrl: './showflightsform.component.html',
+  styleUrls: ['./showflightsform.component.less'],
+  standalone: false
 })
 export class ShowflightsformComponent {
   flights: Flight[] = []
@@ -55,40 +58,9 @@ export class ShowflightsformComponent {
       alert("Please choose a departure and arrival airport.")
     } else {
       let flightsJson = this.service.getHttpClient().get<Flights>(this.service.getBackendUrl() + "/flights/" + (<Airport>arrival).Icao + "/" + (<Airport>departure).Icao + "/" + date);
-      //flightsJson.subscribe()
       flightsJson.subscribe((flights: Flights) => {
         this.flights = flights.flights
       })
-    }
-  }
-
-  downloadIcs(flight: Flight, departureAirport: AirportpickerComponent, arrivalAirport: AirportpickerComponent) {
-    const startDate = new Date(flight.departure);
-    const endDate = new Date(flight.arrival);
-    let geo: GeoCoordinates | undefined;
-    if (departureAirport.airport.value?.Latitude && departureAirport.airport.value?.Longitude) {
-      if (departureAirport.airport.value instanceof Airport) {
-        geo = {lat: parseFloat(departureAirport.airport.value.Latitude), lon: parseFloat(departureAirport.airport.value.Longitude)}
-      }
-    } else {
-      geo = undefined
-    }
-    const icalEvent = ics.createEvent({
-      start: [startDate.getFullYear(), startDate.getMonth() + 1, startDate.getDate(), startDate.getHours(), startDate.getMinutes()],
-      end: [endDate.getFullYear(), endDate.getMonth() + 1, endDate.getDate(), endDate.getHours(), endDate.getMinutes()],
-      title: 'Flight: ' + departureAirport.airport.value?.City + ' to ' + arrivalAirport.airport.value?.City,
-      description:
-        `Airline: ${flight.airline_name},
-Departure airport: ${departureAirport.airport.value?.Name},
-Arrival airport: ${arrivalAirport.airport.value?.Name},
-ICAO of flight: ${flight.flight_icao}`,
-      location: flight.departure_airport_name,
-      geo: geo,
-    });
-    if (icalEvent.value) {
-      let fileName = "flight-" + startDate.getFullYear() + "-" + (startDate.getMonth() + 1) + "-" + startDate.getDate() + ".ics";
-      const icsFile = new File([icalEvent.value], fileName, {type: 'text/calendar'});
-      window.open(window.URL.createObjectURL(icsFile));
     }
   }
 
