@@ -18,3 +18,5 @@ jobs:
         run: mkdir ~/.kube/; echo $KUBEXTI_CLUSTER_CONFIG >> ~/.kube/config; wc -l ~/.kube/config
         env:
           KUBEXTI_CLUSTER_CONFIG: ${{secrets.KUBEXTI_CLUSTER_CONFIG}}
+      - name: get-pods
+        run: kubectl get pods
