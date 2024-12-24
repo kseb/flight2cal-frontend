@@ -32,8 +32,9 @@
   </mat-card-header>
 
   <mat-card-content>
-    <p>Departure: {{ flight.departure | date:'short' }}</p>
-    <p>Arrival: {{ flight.arrival | date:'short' }}</p>
+    <strong>Departure:</strong> {{ flight.departure | date:'short' }}
+    <br>
+    <strong>Arrival:</strong> {{ flight.arrival | date:'short' }}
   </mat-card-content>
 
   <mat-card-actions align="end">
