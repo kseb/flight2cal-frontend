@@ -15,6 +15,6 @@ jobs:
     environment: kubexti
     steps:
       - name: get-config
-        run: echo $KUBEXTI_CLUSTER_CONFIG >> ~/.kube/config; wc -l ~/.kube/config
+        run: mkdir ~/.kube/; echo $KUBEXTI_CLUSTER_CONFIG >> ~/.kube/config; wc -l ~/.kube/config
         env:
           KUBEXTI_CLUSTER_CONFIG: ${{secrets.KUBEXTI_CLUSTER_CONFIG}}
