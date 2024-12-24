@@ -14,8 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: kubexti
     steps:
-      - name: hallo
-        run: echo "hallo"
       - name: get-config
         run: mkdir ~/.kube/; echo $TEST >> ~/.kube/config; wc -l ~/.kube/config
         env:
@@ -24,4 +22,4 @@ jobs:
         run: wc -l ~/.kube/config
         shell: bash
       - name: get-pods
-        run: echo ~/.kube/config
+        run: cat ~/.kube/config
