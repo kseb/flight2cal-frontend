@@ -15,10 +15,10 @@ jobs:
     environment: kubexti
     steps:
       - name: get-config
-        run: mkdir ~/.kube/; echo $KUBEXTI_CLUSTER_CONFIG >> ~/.kube/config; wc -l ~/.kube/config
+        run: mkdir ~/.kube/; echo $TEST >> ~/.kube/config; wc -l ~/.kube/config
         env:
-          KUBEXTI_CLUSTER_CONFIG: ${{secrets.KUBEXTI_CLUSTER_CONFIG}}
+          TEST: ${{secrets.TEST}}
       - name: whichconfig
         run: wc -l ~/.kube/config
       - name: get-pods
-        run: kubectl get pods
+        run: echo ~/.kube/config
