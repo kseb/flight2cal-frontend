@@ -1,16 +1,17 @@
 <div class="flight-form-container">
   <div class="airport-picker">
-    <app-airportpicker [title]="'Departure airport'" #departureAirport></app-airportpicker>
+    <app-airportpicker [title]="'Departure airport'" #departureAirport (keydown.enter)="arrivalAirport.focus()"></app-airportpicker>
   </div>
   <div class="airport-picker">
-    <app-airportpicker [title]="'Arrival airport'" #arrivalAirport></app-airportpicker>
+    <app-airportpicker [title]="'Arrival airport'" #arrivalAirport (keydown.enter)="calendar.focus()"></app-airportpicker>
   </div>
 </div>
 
 <div class="mat-mdc-form-field-flex">
   <mat-form-field appearance="fill" style="width: 100%;">
     <mat-label>Choose date of flight</mat-label>
-    <input matInput [matDatepicker]="picker" #date (focus)="picker.open()" required>
+    <input #calendar matInput [matDatepicker]="picker" #date (focus)="picker.open()"
+           (keydown.enter)="submit(date.value, departureAirport.airport.value, arrivalAirport.airport.value)" required>
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>

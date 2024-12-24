@@ -5,7 +5,7 @@
       {{airport.Name + " (" + airport.City + ", " + airport.Icao + ")"}}
     </mat-option>
   </mat-autocomplete>
-  <input type="text"
+  <input #airportPickerInput type="text"
          placeholder="Pick one"
          aria-label="Number"
          [formControl]="airport"
