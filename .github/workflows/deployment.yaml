@@ -4,13 +4,14 @@ on:
   push:
     branches:
       - test
+  
 
 jobs:
   deployment:
-    runs-on: ubuntu-latest
+    runs-on: bitnami/kubectl
     environment: kubexti
     steps:
       - name: get-config
-        run: echo $TESTSECRET
+        run: echo $KUBEXTI_CLUSTER_CONFIG >> ~/.kube/config; wc -l ~/.kube/config
         env:
-          TESTSECRET: ${{secrets.TEST}}
+          KUBEXTI_CLUSTER_CONFIG: ${{secrets.KUBEXTI_CLUSTER_CONFIG}}
