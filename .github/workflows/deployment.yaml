@@ -3,10 +3,7 @@ name: Deployment
 on:
   push:
     branches:
-      - test
-  
-
-
+      - main
 jobs:
   deployment:
     container:
@@ -21,5 +18,5 @@ jobs:
             ${{ secrets.KUBEXTI_CLUSTER_CONFIG }}
       - name: change-context
         run: kubectl config use-context kubexti
-      - name: get-pods
-        run: kubectl get pods
+      - name: restart
+        run: kubectl -n flight2cal rollout restart deployment flight2cal-frontend
