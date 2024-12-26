@@ -17,9 +17,10 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import {MatListModule} from "@angular/material/list";
 import {MomentDateAdapter} from "@angular/material-moment-adapter";
-import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle, MatCardSubtitle} from "@angular/material/card";
+import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from "@angular/material/card";
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatIcon} from "@angular/material/icon";
+import {MatMenu, MatMenuTrigger} from "@angular/material/menu";
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -54,7 +55,7 @@ const MY_DATE_FORMAT = {
     MatNativeDateModule,
     MatCardTitle,
     MatCardSubtitle,
-    MatListModule, MatCard, MatCardHeader, MatCardContent, MatCardActions, MatToolbar, MatIcon], providers: [
+    MatListModule, MatCard, MatCardHeader, MatCardContent, MatCardActions, MatToolbar, MatIcon, MatMenu, MatMenuTrigger], providers: [
         { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
         { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT },
         provideHttpClient(withInterceptorsFromDi())

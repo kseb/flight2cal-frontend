@@ -10,6 +10,7 @@ export class Airport {
     this.City = ''
     this.Latitude = ''
     this.Longitude = ''
+    this.Country = ''
     return this
   }
 
@@ -18,6 +19,11 @@ export class Airport {
   City: string
   Latitude: string
   Longitude: string
+  Country: string
+
+  String(): string {
+    return this.Name + " (" + this.Country + ", " + this.City + ", " + this.Icao + ")";
+  }
 }
 
 @Component({
@@ -48,7 +54,7 @@ export class AirportpickerComponent implements OnInit {
       return []
     }
     const filterValue = value.toLowerCase();
-    return this.airports.filter(option => option.Name.toLowerCase().includes(filterValue))
+    return this.airports.filter(option => option.String().toLowerCase().includes(filterValue))
   }
 
   loadAirports() {
@@ -57,10 +63,6 @@ export class AirportpickerComponent implements OnInit {
       airports => airports.map(airport => Object.assign(new Airport(), {...airport})
       )
       )).subscribe(airports => this.airports = airports);
-
-    /*airportsJson.subscribe((airports: Airport[]) => {
-      this.airports = airports
-    })*/
   }
 
   airport = new FormControl<Airport | null>(null)
@@ -69,7 +71,7 @@ export class AirportpickerComponent implements OnInit {
     if (airport == null || !airport.Name) {
       return ''
     }
-    return airport.Name + " (" + airport.City + ", " + airport.Icao + ")"
+    return airport.Name + " (" + airport.Country + ", " + airport.City + ", " + airport.Icao + ")"
   }
 
   ngOnInit(): void {

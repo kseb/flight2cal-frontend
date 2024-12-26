@@ -2,7 +2,7 @@
   <mat-label>{{ title }}</mat-label>
   <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
     <mat-option *ngFor="let airport of filteredAirports | async" [value]="airport">
-      {{airport.Name + " (" + airport.City + ", " + airport.Icao + ")"}}
+      {{ airport.String() }}
     </mat-option>
   </mat-autocomplete>
   <input #airportPickerInput type="text"
